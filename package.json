@@ -1,0 +1,19 @@
+{
+  "name": "ritual",
+  "version": "0.0.1",
+  "description": "AWS application for repeated activities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no tests\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fongelias/ritual.git"
+  },
+  "author": "Elias Fong <fongelias@gmail.com> (https://fongelias.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fongelias/ritual/issues"
+  },
+  "homepage": "https://github.com/fongelias/ritual#readme"
+}
