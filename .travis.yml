@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - 9.10.1
 deploy:
-  provider: s3
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: ritual-app
-  skip_cleanup: true
-  local_dir: prod
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: ritual-app
+    skip_cleanup: true
+    local_dir: prod
