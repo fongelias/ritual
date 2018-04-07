@@ -16,4 +16,4 @@ deploy:
     role: "arn:aws:iam::072629470284:role/service-role/ritualLambda"
     handler_name: "handler"
     runtime: "nodejs8.10"
-    zip: prod/lambda/addUser.js
+    zip: prod/lambdas/addUser.js
