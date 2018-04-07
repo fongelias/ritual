@@ -7,4 +7,13 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: ritual-app
     skip_cleanup: true
-    local_dir: prod
+    local_dir: prod/public
+  - provider: lambda
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    function_name: "addUser"
+    region: "us-east-1"
+    role: "arn:aws:iam::072629470284:role/service-role/ritualLambda"
+    handler_name: "handler"
+    runtime: "nodejs8.10"
+    zip: prod/lambda
