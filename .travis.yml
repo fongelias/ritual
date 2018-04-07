@@ -14,6 +14,7 @@ deploy:
     function_name: "addUser"
     region: "us-east-1"
     role: "arn:aws:iam::072629470284:role/service-role/ritualLambda"
-    handler_name: "handler"
     runtime: "nodejs8.10"
+    module_name: "addUser"
+    handler_name: "handler"
     zip: prod/lambdas/addUser.js
