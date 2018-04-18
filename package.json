@@ -2,8 +2,9 @@
   "name": "ritual",
   "version": "0.0.1",
   "description": "AWS application for repeated activities",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
+    "start": "node src/server/server.js",
     "test": "BABEL_ENV=test mocha --require babel-core/register './{,!(node_modules)/**/}*.test.js'",
     "build:clean": "rm -rf prod",
     "build:dev": "BABEL_ENV=dev webpack --config internals/webpack.dev.js;",
@@ -24,10 +25,14 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "mocha": "^5.1.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "redux": "^4.0.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
