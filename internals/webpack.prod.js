@@ -26,6 +26,9 @@ const appConfig = {
 		new CopyWebpackPlugin([
 			{from: './src/app/index.html', to: './index.html'},
 		]),
+		new CopyWebpackPlugin([
+			{from: './src/lambdas', to: '../lambdas'},
+		]),
 		new webpack.DefinePlugin({ 
 			"process.env": { NODE_ENV: "'production'" }
 		}),
@@ -33,31 +36,10 @@ const appConfig = {
 	]
 };
 
-const addUserLambdaConfig = {
-	entry: {
-		addUser: './src/lambdas/addUser.js',
-	},
-	output: {
-		filename: '[name].js',
-		path: path.resolve(__dirname, lambdaOutputPath),
-	},
-	module: {
-		loaders: [
-			{test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-		]
-	},
-	plugins: [
-		new webpack.DefinePlugin({ 
-			"process.env": { NODE_ENV: "'production'" }
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true,
-		})
-	]
-};
 
 
-module.exports = [appConfig, addUserLambdaConfig]
+
+module.exports = [appConfig]
 
 
 
