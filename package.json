@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server/server.js",
     "test": "BABEL_ENV=test mocha --require babel-core/register './{,!(node_modules)/**/}*.test.js'",
-    "build:clean": "rm -rf prod",
+    "build:clean": "rm -rf prod; rm -rf dev;",
     "build:dev": "BABEL_ENV=dev webpack --config internals/webpack.dev.js;",
     "build:prod": "BABEL_ENV=prod webpack --config internals/webpack.prod.js"
   },
