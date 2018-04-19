@@ -1,4 +1,5 @@
 //Dependencies
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
@@ -15,6 +16,7 @@ const appConfig = {
 	output: {
 		filename: '[name].[chunkhash].js',
 		path: path.resolve(__dirname, appOutputPath),
+		publicPath: '/'
 	},
 	module: {
 		loaders: [
@@ -23,9 +25,9 @@ const appConfig = {
 		]
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			{from: './src/app/index.html', to: './index.html'},
-		]),
+		new HtmlWebpackPlugin({
+			template: './src/app/index.html'
+		}),
 		new CopyWebpackPlugin([
 			{from: './src/lambdas', to: '../lambdas'},
 		]),

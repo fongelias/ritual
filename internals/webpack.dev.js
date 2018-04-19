@@ -1,5 +1,5 @@
 //Dependencies
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 //Config
@@ -13,6 +13,7 @@ const appConfig = {
 	output: {
 		filename: '[name].js',
 		path: path.resolve(__dirname, appOutputPath),
+		publicPath: '/'
 	},
 	module: {
 		loaders: [
@@ -21,9 +22,10 @@ const appConfig = {
 		]
 	},
 	plugins: [
-		new CopyWebpackPlugin([
-			{from: './src/app/index.html', to: './index.html'},
-		]),
+		new HtmlWebpackPlugin({
+			template: './src/app/index.html'
+		}),
+
 	]
 };
 
