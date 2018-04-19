@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 exports.handler = async (event, context, callback) => {
     // TODO implement
     console.log(context);
