@@ -13,7 +13,7 @@ const appConfig = {
 		app: './src/app/js/index.jsx',
 	},
 	output: {
-		filename: '[name].js',
+		filename: '[name].[chunkhash].js',
 		path: path.resolve(__dirname, appOutputPath),
 	},
 	module: {
