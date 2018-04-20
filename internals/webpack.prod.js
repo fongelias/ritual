@@ -1,6 +1,7 @@
 //Dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const webpack = require('webpack');
 const path = require('path');
 
@@ -22,6 +23,7 @@ const appConfig = {
 		loaders: [
 			{test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
 			{test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
+			{test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader')},
 		]
 	},
 	plugins: [
@@ -31,6 +33,10 @@ const appConfig = {
 		new CopyWebpackPlugin([
 			{from: './src/lambdas', to: '../lambdas'},
 		]),
+		new ExtractTextPlugin({
+			filename: './css/[name].[chunkhash].css',
+			allChunks: true
+		}),
 		new webpack.DefinePlugin({ 
 			"process.env": { NODE_ENV: "'production'" }
 		}),

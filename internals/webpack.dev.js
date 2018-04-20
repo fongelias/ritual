@@ -1,5 +1,6 @@
 //Dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 
 //Config
@@ -19,13 +20,17 @@ const appConfig = {
 		loaders: [
 			{test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
 			{test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
+			{test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader')},
 		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: './src/app/index.html'
 		}),
-
+		new ExtractTextPlugin({
+			filename: './css/[name].[chunkhash].css',
+			allChunks: true
+		}),
 	]
 };
 
