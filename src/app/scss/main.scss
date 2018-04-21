@@ -47,7 +47,6 @@ body {
 .landingPage {
 	padding: 10px;
 	background: $tan;
-	height: 50vh;
 
 	h1 {
 		font-family: $Montserrat;
@@ -66,6 +65,8 @@ body {
 	}
 }
 
+/*-- Flex --*/
+.flex {}
 
 /*-- Components --*/
 nav {
@@ -78,6 +79,12 @@ nav {
 		@include flexbox;
 		@include flex-direction(row);
 		@include justify-content(flex-start);
+
+		.navLogo {
+			height: 37px;
+			width: 37px;
+			padding: 5px;
+		}
 
 		.navLink {
 			font-family: $Montserrat;
@@ -96,10 +103,23 @@ nav {
 			padding: 10px;
 			text-decoration: none;
 		}
+
+		.navLink.signUp {
+			font-weight: 600;
+		}
 	}
 }
 
 
-
+.ctaButton {
+	text-decoration: none;
+	font-family: $OpenSans;
+	font-weight: 600;
+	display: inline-block;
+	background: $collegeBlue;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 3px;
+}
 
 

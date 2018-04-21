@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import RitualMapLogo from 'react-svg-loader!../../../svg/RitualMapLogo.svg';
 
 export const LandingPage = () => (
 	<div className="landingPage">
 		<nav>
 			<span className="left">
+				<RitualMapLogo className="navLogo"/>
 				<Link to='/' className="navLink homePage">Ritual Map</Link>
 			</span>
 			<span className="right">
@@ -16,8 +18,8 @@ export const LandingPage = () => (
 		</nav>
 		<h1>let's get organized</h1>
 		<p>Record, organize and measure daily routines</p>
-		<span>
-			<Link to='/SignUp' className="">Get Started</Link>
-		</span>
+		<div className="flex center">
+			<Link to='/SignUp' className="ctaButton">Get Started</Link>
+		</div>
 	</div>
 )
