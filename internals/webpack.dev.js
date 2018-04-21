@@ -28,7 +28,7 @@ const appConfig = {
 			template: './src/app/index.html'
 		}),
 		new ExtractTextPlugin({
-			filename: './css/[name].[chunkhash].css',
+			filename: 'css/[name].[chunkhash].css',
 			allChunks: true
 		}),
 	]

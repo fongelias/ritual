@@ -34,7 +34,7 @@ const appConfig = {
 			{from: './src/lambdas', to: '../lambdas'},
 		]),
 		new ExtractTextPlugin({
-			filename: './css/[name].[chunkhash].css',
+			filename: 'css/[name].[chunkhash].css',
 			allChunks: true
 		}),
 		new webpack.DefinePlugin({ 
