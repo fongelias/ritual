@@ -21,6 +21,7 @@ const appConfig = {
 			{test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
 			{test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/},
 			{test: /\.scss$/, loader: ExtractTextPlugin.extract('css-loader!sass-loader')},
+			{test: /\.svg$/, use: [{loader: "babel-loader"}, {loader: "react-svg-loader", options: {jsx: true }}]},
 		]
 	},
 	plugins: [
