@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import RitualMapLogo from 'react-svg-loader!../../../svg/RitualMapLogo.svg';
+import RitualMapLogo from '../../../svg/RitualMapLogo.svg';
 
 export const LandingPage = () => (
 	<div className="landingPage">
