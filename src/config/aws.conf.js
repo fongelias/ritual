@@ -1,24 +1,43 @@
 
 //Config
 const cognitoDomain = 'ritual-app.auth.us-east-1.amazoncognito.com';
-const cognitoClientId = {
-	web: '2ds2ch7esf0n64ht623f18huvk',
+const cognitoRegion = 'us-east-1';
+const cognitoId = {
+	webClient: '63ublealr0r5485ihm1gbtmm3e',
+	identityPool: 'us-east-1:81ae047a-40ff-4dd4-9cc6-22e85eb53a9e',
+	userPool: 'us-east-1_wFoDDbMJF';
 };
 const responseType = 'token';
-const callbackUrl = 'https://ritualmap.com/';
+const domainName = 'ritualmap.com'
+const callbackUrl = 'https://' + domain + '/';
 
 //Exported
 export const aws = {
 	cognito: {
 		signIn: {
-			url: 'https://' + cognitoDomain + '/login?response_type=' + responseType + '&client_id=' + cognitoClientId.web + '&redirect_uri=' + callbackUrl,
+			url: 'https://' + cognitoDomain + '/login?response_type=' + responseType + '&client_id=' + cognitoId.webClient + '&redirect_uri=' + callbackUrl,
 		},
 		signUp: {
-			url: 'https://' + cognitoDomain + '/signup?response_type=' + responseType + '&client_id=' + cognitoClientId.web + '&redirect_uri=' + callbackUrl,
+			url: 'https://' + cognitoDomain + '/signup?response_type=' + responseType + '&client_id=' + cognitoId.webClient + '&redirect_uri=' + callbackUrl,
 		},
 		signOut: {}
+	},
+	amplify: {
+		Auth: {
+			identityPoolId: cognitoId.identityPool,
+			region: cognitoRegion,
+			userPoolId: cognitoId.userPool,
+			userPoolWebClientId: cognitoId.webClient,
+			mandatorySignIn: false,
+			cookieStorage: {
+				domain: '.' + domainName,
+				expires: 1,
+				secure: true
+			}
+		}
 	}
 }
+
 
 
 

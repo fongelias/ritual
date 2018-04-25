@@ -10,7 +10,7 @@ const getParameter = (() => {
 })();
 
 const getAllParameters = (url = window.location.href) => {
-	const paramStrings = url.match(/[^&?]*?=[^&?]*/g);
+	const paramStrings = url.match(/[^&#?]*?=[^&?]*/g);
 	return !paramStrings ? null : paramStrings.reduce((p, c) => {
 		const key = c.split("=")[0];
 		const val = c.split("=")[1];
