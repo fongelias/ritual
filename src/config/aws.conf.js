@@ -5,11 +5,11 @@ const cognitoRegion = 'us-east-1';
 const cognitoId = {
 	webClient: '63ublealr0r5485ihm1gbtmm3e',
 	identityPool: 'us-east-1:81ae047a-40ff-4dd4-9cc6-22e85eb53a9e',
-	userPool: 'us-east-1_wFoDDbMJF';
+	userPool: 'us-east-1_wFoDDbMJF',
 };
 const responseType = 'token';
 const domainName = 'ritualmap.com'
-const callbackUrl = 'https://' + domain + '/';
+const callbackUrl = 'https://' + domainName + '/';
 
 //Exported
 export const aws = {
@@ -31,7 +31,7 @@ export const aws = {
 			mandatorySignIn: false,
 			cookieStorage: {
 				domain: '.' + domainName,
-				expires: 1,
+				expires: 1, //Days
 				secure: true
 			}
 		}
