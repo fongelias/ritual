@@ -10,7 +10,7 @@ export const App = () => (
   <Router>
     <Switch>
 	  <Route exact path="/" component={LandingPage}/>
-	  <Route path="/SignIn" component={SignInPage}/>
+
 	  <Route path="/*" component={LandingPage}/>
     </Switch>
   </Router>
