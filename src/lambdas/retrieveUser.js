@@ -36,7 +36,7 @@ exports.handler = async (event, context, callback) => {
 
 
 function retrieveUser(id) {
-	findUserById(id).then(user => user).catch(err => addUser(id))
+	return findUserById(id).then(user => user).catch(err => addUser(id))
 }
 
 
