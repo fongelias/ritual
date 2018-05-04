@@ -9,7 +9,7 @@ const config = {
 	}
 }
 
-exports.handler = async (event, context, callback) => {
+exports.handler = (event, context, callback) => {
     console.log(event);
     console.log(event.requestContext.identity.cognitoIdentityId)
     //Change to make sure travis deploy is being tested properly
@@ -26,17 +26,12 @@ exports.handler = async (event, context, callback) => {
     }).catch((err) => {
     	console.log(err);
     })
-
-    /*callback(null, {
-        headers,
-        body: 'Hello from Lambda! retrieveUser'
-    });*/
 };
 
 
 
 function retrieveUser(id) {
-	return findUserById(id).then(user => user).catch(err => addUser(id))
+	return findUserById(id).then(user => user).catch(err => addUser(id));
 }
 
 
@@ -60,8 +55,13 @@ function findUserById(id) {
 				console.error(errMessage + " Error JSON:" + JSON.stringify(err));
 				reject(errMessage);
 			} else {
-				console.log(data);
-				resolve(data);
+				if(data.Items != null && data.Items.length > 0) {
+					resolve(data.Items[0]);
+				} else {
+					const errMessage = "User " + id + " not found in " + config.USERTABLE.NAME;
+					console.error(errMessage + " Error JSON:" + JSON.stringify(err));
+					reject(errMessage);
+				}
 			}
 		})
 	})
