@@ -85,8 +85,8 @@ function addUser(id) {
 				console.error(errMessage + " Error JSON:" + JSON.stringify(err));
 				reject(errMessage);
 			} else {
-				console.log("Added user:", JSON.stringify(data));
-				resolve(data);
+				console.log("Added user:", JSON.stringify(params.Item));
+				resolve(params.Item);
 			}
 		})
 	})
