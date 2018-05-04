@@ -22,3 +22,13 @@ deploy:
     module_name: "addUser"
     handler_name: "handler"
     zip: prod/lambdas/addUser.js
+  - provider: lambda
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    function_name: "retrieveUser"
+    region: "us-east-1"
+    role: "arn:aws:iam::072629470284:role/service-role/ritualLambda"
+    runtime: "nodejs8.10"
+    module_name: "retrieveUser"
+    handler_name: "handler"
+    zip: prod/lambdas/retrieveUser.js
