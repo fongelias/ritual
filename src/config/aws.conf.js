@@ -34,8 +34,19 @@ export const aws = {
 				expires: 1, //Days
 				secure: true
 			}
+		},
+		API: {
+			endpoints: [
+				{
+					name: "retrieveUser",
+					endpoint: "https://3ku3hkpf7j.execute-api.us-east-1.amazonaws.com/prod/retrieveuser",
+				}
+			]
 		}
-	}
+	},
+	routes: {
+		retrieveUser: "https://3ku3hkpf7j.execute-api.us-east-1.amazonaws.com/prod/retrieveuser",
+	},
 }
 
 

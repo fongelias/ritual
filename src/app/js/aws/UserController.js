@@ -3,11 +3,12 @@ import { Auth } from 'aws-amplify';
 
 
 
-export const UserController = {
-	signIn: (username, password) => {
+export class UserController {
+	static signIn(username, password) {
 		return Auth.signIn(username, password);
-	},
-	signUp: (email, password, given_name) => {
+	}
+
+	static signUp(email, password, given_name) {
 		return Auth.signUp({
 			username: email,
 			password,
@@ -16,13 +17,31 @@ export const UserController = {
 				given_name,
 			},
 		});
-	},
-	signOut: () => {
+	}
+
+	static signOut() {
 		return Auth.signOut();
-	},
-	currentSession: () => {
+	}
+
+	static currentSession() {
 		return Auth.currentSession();
-	},
+	}
+
+	static federatedSignIn(username, password) {
+		this.signIn(username, password).then((response) => {
+			const { accessToken, idToken, refereshToken } = response.signInUserSession
+			const user = {
+				email: idToken.payload.email,
+				name: idToken.payload.given_name,
+			}
+
+			Auth.federatedSignIn('amazon', {
+				token: user.signInUserSession
+			}, user).then((response) => {
+				console.log(response);
+			})
+		})
+	}
 }
 
 
