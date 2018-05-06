@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { UserController } from '../../aws';
-import { Auth, API } from 'aws-amplify';
 
 
 
@@ -15,11 +14,7 @@ export class SignInPage extends Component {
 	signIn() {
 		console.log(this.refs.email.value);
 		console.log(this.refs.password.value);
-		UserController.signIn(this.refs.email.value, this.refs.password.value).then(user => {
-			console.log(user);
-
-			API.get("retrieveUser", "/").then(data => console.log(data));
-		});
+		UserController.signIn(this.refs.email.value, this.refs.password.value);
 	}
 
 	render() {
