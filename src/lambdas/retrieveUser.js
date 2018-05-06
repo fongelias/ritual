@@ -21,7 +21,7 @@ exports.handler = (event, context, callback) => {
     retrieveUser(event.requestContext.identity.cognitoIdentityId).then((data) => {
     	callback(null, {
     		headers,
-    		body: data,
+    		body: JSON.stringify(data),
     	})
     }).catch((err) => {
     	console.log(err);
