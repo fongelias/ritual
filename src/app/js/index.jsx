@@ -1,7 +1,7 @@
 //AWS config
 import Amplify from 'aws-amplify';
-import { aws } from './aws';
-Amplify.configure(aws.amplify);
+import { amplify } from './aws';
+Amplify.configure(amplify);
 //Other dependencies
 import React from 'react';
 import ReactDOM from 'react-dom';

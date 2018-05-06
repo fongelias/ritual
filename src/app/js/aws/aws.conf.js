@@ -12,42 +12,61 @@ const domainName = 'ritualmap.com'
 const callbackUrl = 'https://' + domainName + '/';
 
 //Exported
-export const aws = {
-	cognito: {
-		signIn: {
-			url: 'https://' + cognitoDomain + '/login?response_type=' + responseType + '&client_id=' + cognitoId.webClient + '&redirect_uri=' + callbackUrl,
-		},
-		signUp: {
-			url: 'https://' + cognitoDomain + '/signup?response_type=' + responseType + '&client_id=' + cognitoId.webClient + '&redirect_uri=' + callbackUrl,
-		},
-		signOut: {}
-	},
-	amplify: {
-		Auth: {
-			identityPoolId: cognitoId.identityPool,
-			region: cognitoRegion,
-			userPoolId: cognitoId.userPool,
-			userPoolWebClientId: cognitoId.webClient,
-			mandatorySignIn: false,
-			cookieStorage: {
-				domain: '.' + domainName,
-				expires: 1, //Days
-				secure: true
-			}
-		},
-		API: {
-			endpoints: [
-				{
-					name: "retrieveUser",
-					endpoint: "https://3ku3hkpf7j.execute-api.us-east-1.amazonaws.com/prod/retrieveuser",
-				}
-			]
+export const amplify = {
+	Auth: {
+		identityPoolId: cognitoId.identityPool,
+		region: cognitoRegion,
+		userPoolId: cognitoId.userPool,
+		userPoolWebClientId: cognitoId.webClient,
+		mandatorySignIn: false,
+		cookieStorage: {
+			domain: '.' + domainName,
+			expires: 1, //Days
+			secure: true
 		}
 	},
-	routes: {
-		retrieveUser: "https://3ku3hkpf7j.execute-api.us-east-1.amazonaws.com/prod/retrieveuser",
+	API: {
+		endpoints: [
+			{
+				name: "retrieveUser",
+				endpoint: "https://3ku3hkpf7j.execute-api.us-east-1.amazonaws.com/prod/retrieveuser",
+			}
+		]
 	},
-}
+};
+
+
+export const cognito = {
+	password: {
+		policies: [
+			{ 
+				name: 'length', 
+				description: 'Password must be at least 6 characters',
+				test: (str) => str.length > 8,
+			},
+			{
+				name: 'numbers',
+				description: 'Password must include a number',
+				test: (str) => /\d/.test(str),
+			},
+			{
+				name: 'special-characters',
+				description: 'Password must include a special character',
+				test: (str) => /[\^$*.\[\]{}()?\-"!@#%&/\\,><':;|_~`]/.test(str),
+			},
+			{
+				name: 'uppercase',
+				description: 'Password must include uppercase letters',
+				test: (str) => /[A-Z]/.test(str),
+			},
+			{
+				name: 'lowercase',
+				description: 'Password must include lowercase letters',
+				test: (str) => /[a-z]/.test(str),
+			}
+		],
+	},
+};
 
 
 

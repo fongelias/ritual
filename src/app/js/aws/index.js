@@ -1,3 +1,3 @@
 export { UserController } from './UserController';
 
-export { aws } from './aws.conf';
+export { amplify, cognito } from './aws.conf';
