@@ -3,10 +3,10 @@ import React, { Component } from 'react'
 
 
 
-const Step = ({name, completed}) => (
+const Step = ({description, completed}) => (
 	<div className="step">
 		<span>{completed.toString()}</span>
-		<span>{name}</span>
+		<span>{description}</span>
 	</div>
 )
 
@@ -16,9 +16,9 @@ const Step = ({name, completed}) => (
 export const FlightCheck = ({steps}) => (
 	<div className="flightCheck">
 		{
-			Object.entries(steps).map(([name, completed]) => {
+			steps.map(({name, description, completed}) => {
 				return (
-					<Step name={name} completed={completed} key={name}/>
+					<Step description={description} completed={completed} key={name}/>
 				)
 			})
 		}
