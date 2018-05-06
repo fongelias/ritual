@@ -18,11 +18,13 @@ export class SignUpPage extends Component {
 					description, 
 					completed: false,
 				}
-			})
+			}),
+			submitDisabled: true,
 		}
 
 		this.signUp = this.signUp.bind(this);
 		this.updateFlightCheck = this.updateFlightCheck.bind(this);
+		this.updateSubmitDisabled = this.updateSubmitDisabled.bind(this);
 	}
 
 	signUp() {
@@ -42,15 +44,25 @@ export class SignUpPage extends Component {
 				}
 			})
 		})
+
+		this.updateSubmitDisabled();
+	}
+
+	updateSubmitDisabled() {
+		if(this.refs.email.value && this.refs.name.value && this.state.policies.reduce((p,c) => p && c.completed, true)) {
+			this.setState({
+				submitDisabled: false,
+			})
+		}
 	}
 
 	render() {
 		return (
 			<div className="SignUpPage">
-				<input ref="name" type="text" placeholder="First Name"/>
-				<input ref="email" type="email" placeholder="Email"/>
+				<input ref="name" type="text" placeholder="First Name" onChange={this.updateSubmitDisabled}/>
+				<input ref="email" type="email" placeholder="Email" onChange={this.updateSubmitDisabled}/>
 				<input ref="password" type="password" placeholder="Password" onChange={this.updateFlightCheck}/>
-				<button onClick={this.signUp}>Sign Up</button>
+				<button onClick={this.signUp} disabled={this.state.submitDisabled}>Sign Up</button>
 				<FlightCheck steps={this.state.policies}></FlightCheck>
 			</div>
 		)
