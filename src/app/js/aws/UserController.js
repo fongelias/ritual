@@ -1,11 +1,13 @@
-import { Auth } from 'aws-amplify';
+import { Auth, API } from 'aws-amplify';
 
 
 
 
 export class UserController {
 	static signIn(username, password) {
-		return Auth.signIn(username, password);
+		return Auth.signIn(username, password).then((awsUser) => {
+			API.get("retrieveUser", "/").then(data => console.log(data));
+		});
 	}
 
 	static signUp(email, password, given_name) {

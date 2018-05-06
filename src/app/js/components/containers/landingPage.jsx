@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-import { aws } from '../../../../config';
 //import { url } from '../../../../utils';
 //svgs
 import RitualMapLogo from '../../../svg/RitualMapLogo.svg';
@@ -49,16 +48,6 @@ export class LandingPage extends Component {
 		const scrollTop = document.getElementById("root").scrollTop;
 		const offset = scrollTop < 206 ? scrollTop : 206;
 		this.setState(this.stateFromOffset(Math.floor(offset * 1.8)));
-
-		/*let params = url.getAllParameters();
-		params = Object.entries(params).map(val => {
-
-			return val == 'id_token' || val == 'access_token' ? [val[0], jwtDecode(val[1])] : val;
-		}).reduce((p,c) => {
-			p[c[0]] = c[1];
-			return p;
-		}, {});
-		console.log(jwtDecode('eyJraWQiOiJTOU5HcnZEOUVsWkJ6Ymo0RUhtU3JjMU9HMDBJMz…o3TpJO6GJayHmyvZXyrXotCOdBVAAoHDg2F4OpVUF3UOcT_Zg'));*/
 	}
 
 	render() {
@@ -76,7 +65,7 @@ export class LandingPage extends Component {
 								<NavLink to='/Features' className="navLink" activeClassName="active">Features</NavLink>
 								<NavLink to='/Pricing' className="navLink" activeClassName="active">Pricing</NavLink>
 								<NavLink to='/SignIn' className="navLink">Sign In</NavLink>
-								<a href={aws.cognito.signUp.url} className="navLink signUp">Sign Up</a>
+								<NavLink to='/SignUp' className="navLink signUp">Sign Up</NavLink>
 							</span>
 						</nav>
 					</div>
@@ -84,7 +73,7 @@ export class LandingPage extends Component {
 						<h1>let's get organized</h1>
 						<p>Record, organize and measure daily routines</p>
 						<div className="flex xcenter">
-							<a href={aws.cognito.signUp.url} className="ctaButton">Get Started</a>
+							<NavLink to='/SignUp' className="ctaButton">Get Started</NavLink>
 						</div>
 					</article>
 				</div>
