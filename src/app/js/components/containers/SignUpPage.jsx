@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { UserController, cognito } from '../../aws';
-const policies = cognito.password.policies;
+const passwordPolicies = cognito.password.policies;
 
-import { FlightCheck } from '../presentational';
+import { FlightCheck, FormInput } from '../presentational';
 
 
 
@@ -12,7 +12,7 @@ export class SignUpPage extends Component {
 		super();
 
 		this.state = {
-			policies: policies.map(({ name, description, test }) => {
+			policies: passwordPolicies.map(({ name, description, test }) => {
 				return {
 					name,
 					description, 
@@ -20,48 +20,95 @@ export class SignUpPage extends Component {
 				}
 			}),
 			submitDisabled: true,
+			form: {
+				name: { value: "", error: "", valid: false },
+				email: { value: "", error: "", valid: false },
+				password: { value: "", error: "", valid: false },
+			},
 		}
 
 		this.signUp = this.signUp.bind(this);
-		this.updateFlightCheck = this.updateFlightCheck.bind(this);
 		this.updateSubmitDisabled = this.updateSubmitDisabled.bind(this);
+
+		this.updateName = this.updateName.bind(this);
+		this.updateEmail = this.updateEmail.bind(this);
+		this.updatePassword = this.updatePassword.bind(this);
 	}
 
 	signUp() {
-		console.log(this.refs.email.value);
-		console.log(this.refs.password.value);
-		console.log(this.refs.name.value);
-		UserController.signUp(this.refs.email.value, this.refs.password.value, this.refs.name.value);
-	}
-
-	updateFlightCheck(event) {
-		this.setState({
-			policies: policies.map(({ name, description, test }) => {
-				return {
-					name,
-					description, 
-					completed: test(event.target.value),
-				}
-			})
-		})
-
-		this.updateSubmitDisabled();
+		UserController.signUp(this.state.form.email.value, this.state.form.password.value, this.state.form.name.value);
 	}
 
 	updateSubmitDisabled() {
-		if(this.refs.email.value && this.refs.name.value && this.state.policies.reduce((p,c) => p && c.completed, true)) {
+		if(this.state.form.name.valid && this.state.form.email.valid && this.state.form.password.valid) {
 			this.setState({
 				submitDisabled: false,
 			})
 		}
 	}
 
+	updateName(event) {
+		const value = event.target.value;
+		const valid = value != "";
+		const form = Object.assign({}, this.state.form);
+		form.name = { value, valid, error:"" };
+
+		this.setState({ form }, () => {
+			if(valid) { 
+				this.updateSubmitDisabled();
+			}
+		});
+	}
+
+	updateEmail(event) {
+		const value = event.target.value;
+		const valid = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(value);
+		const error = valid ? "" : "Please enter a valid email";
+		const form = Object.assign({}, this.state.form);
+		form.email = { value, valid, error };
+
+		this.setState({ form }, () => {
+			if(valid) { 
+				this.updateSubmitDisabled();
+			}
+		});		
+	}
+
+	updatePassword(event) {
+		const value = event.target.value;
+		const policies = passwordPolicies.map(({ name, description, test }) => {
+			return {
+				name,
+				description, 
+				completed: test(value),
+			}
+		});
+		const valid = policies.reduce((p,c) => p && c.completed, true);
+		const form = Object.assign({}, this.state.form);
+		form.password = { value, valid, error:"" };
+
+		this.setState({ policies, form }, () => {
+			if(valid) { 
+				this.updateSubmitDisabled();
+			}
+		});		
+	}
+
 	render() {
 		return (
 			<div className="SignUpPage">
-				<input ref="name" type="text" placeholder="First Name" onChange={this.updateSubmitDisabled}/>
-				<input ref="email" type="email" placeholder="Email" onChange={this.updateSubmitDisabled}/>
-				<input ref="password" type="password" placeholder="Password" onChange={this.updateFlightCheck}/>
+				<FormInput type="text" placeholder="First Name" 
+					value={this.state.form.name.value}
+					error={this.state.form.name.error}
+					changeFn={this.updateName}/>
+				<FormInput type="email" placeholder="Email" 
+					value={this.state.form.email.value}
+					error={this.state.form.email.error}
+					changeFn={this.updateEmail}/>
+				<FormInput type="password" placeholder="Password" 
+					value={this.state.form.password.value}
+					error={this.state.form.password.error}
+					changeFn={this.updatePassword}/>
 				<button onClick={this.signUp} disabled={this.state.submitDisabled}>Sign Up</button>
 				<FlightCheck steps={this.state.policies}></FlightCheck>
 			</div>
