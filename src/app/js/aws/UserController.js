@@ -4,9 +4,12 @@ import { Auth, API } from 'aws-amplify';
 
 
 export class UserController {
-	static signIn(username, password) {
+	static signIn(username, password, errCallback) {
 		return Auth.signIn(username, password).then((awsUser) => {
 			API.get("retrieveUser", "/").then(data => console.log(data));
+		}).catch((err) => {
+			console.log(err);
+			errCallback(err.message);
 		});
 	}
 

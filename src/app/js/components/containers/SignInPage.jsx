@@ -13,7 +13,7 @@ export class SignInPage extends Component {
 		this.state = {
 			email: { value: "", error: "", valid: false },
 			password: { value: "", error: "", valid: false },
-
+			error: "",
 		}
 
 		this.signIn = this.signIn.bind(this);
@@ -23,7 +23,9 @@ export class SignInPage extends Component {
 	}
 
 	signIn() {
-		UserController.signIn(this.state.email.value, this.state.password.value);
+		UserController.signIn(this.state.email.value, this.state.password.value, (msg) => {
+			this.setState({ error: msg });
+		});
 	}
 
 	updateEmail(event) {
@@ -55,8 +57,9 @@ export class SignInPage extends Component {
 				<FormInput type="password" placeholder="Password" 
 					value={this.state.password.value}
 					error={this.state.password.error}
-					changeFn={this.password}/>
-				<button disabled={this.state.email.valid && this.state.password.valid} onClick={this.signIn}>Sign In</button>
+					changeFn={this.updatePassword}/>
+				<button disabled={!(this.state.email.valid && this.state.password.valid)} onClick={this.signIn}>Sign In</button>
+				<span>{this.state.error}</span>
 			</div>
 		)
 	}
