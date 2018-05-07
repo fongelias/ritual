@@ -19,7 +19,6 @@ export class SignUpPage extends Component {
 					completed: false,
 				}
 			}),
-			submitDisabled: true,
 			form: {
 				name: { value: "", error: "", valid: false },
 				email: { value: "", error: "", valid: false },
@@ -28,7 +27,7 @@ export class SignUpPage extends Component {
 		}
 
 		this.signUp = this.signUp.bind(this);
-		this.updateSubmitDisabled = this.updateSubmitDisabled.bind(this);
+		this.submitDisabled = this.submitDisabled.bind(this);
 
 		this.updateName = this.updateName.bind(this);
 		this.updateEmail = this.updateEmail.bind(this);
@@ -39,12 +38,8 @@ export class SignUpPage extends Component {
 		UserController.signUp(this.state.form.email.value, this.state.form.password.value, this.state.form.name.value);
 	}
 
-	updateSubmitDisabled() {
-		if(this.state.form.name.valid && this.state.form.email.valid && this.state.form.password.valid) {
-			this.setState({
-				submitDisabled: false,
-			})
-		}
+	submitDisabled() {
+		return !(this.state.form.name.valid && this.state.form.email.valid && this.state.form.password.valid);
 	}
 
 	updateName(event) {
@@ -53,11 +48,7 @@ export class SignUpPage extends Component {
 		const form = Object.assign({}, this.state.form);
 		form.name = { value, valid, error:"" };
 
-		this.setState({ form }, () => {
-			if(valid) { 
-				this.updateSubmitDisabled();
-			}
-		});
+		this.setState({ form });
 	}
 
 	updateEmail(event) {
@@ -67,11 +58,7 @@ export class SignUpPage extends Component {
 		const form = Object.assign({}, this.state.form);
 		form.email = { value, valid, error };
 
-		this.setState({ form }, () => {
-			if(valid) { 
-				this.updateSubmitDisabled();
-			}
-		});		
+		this.setState({ form });		
 	}
 
 	updatePassword(event) {
@@ -87,11 +74,7 @@ export class SignUpPage extends Component {
 		const form = Object.assign({}, this.state.form);
 		form.password = { value, valid, error:"" };
 
-		this.setState({ policies, form }, () => {
-			if(valid) { 
-				this.updateSubmitDisabled();
-			}
-		});		
+		this.setState({ policies, form });		
 	}
 
 	render() {
@@ -109,7 +92,8 @@ export class SignUpPage extends Component {
 					value={this.state.form.password.value}
 					error={this.state.form.password.error}
 					changeFn={this.updatePassword}/>
-				<button onClick={this.signUp} disabled={this.state.submitDisabled}>Sign Up</button>
+				<button onClick={this.signUp} 
+					disabled={this.submitDisabled()}>Sign Up</button>
 				<FlightCheck steps={this.state.policies}></FlightCheck>
 			</div>
 		)
