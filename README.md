@@ -5,6 +5,7 @@ application for tracking repeated tasks and their metrics
 
 ## Table of contents
 [Application Landscape Description](https://github.com/fongelias/ritual/blob/master/docs/LANDSCAPE.md)
+
 [Use Cases](https://github.com/fongelias/ritual/blob/master/docs/USECASES.md)
 
 
