@@ -21,6 +21,10 @@ File describing use cases for ritual app
 - [ ] User should be able to sign in
 	- [ ] User should be able to sign in with cognito credentials
 	- [ ] User should be sent to their dashboard once signed in
+- [ ] Client should retrieve USER object on sign in
+	- [x] READ
+		- [x] retrieve user from dynamodb in lambda
+		- [ ] update redux state
 - [ ] User should be able to manage RITUALS
 	- [ ] Create
 	- [ ] Read

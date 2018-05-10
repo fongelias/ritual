@@ -28,8 +28,12 @@ export class UserController {
 		return Auth.signOut();
 	}
 
-	static currentSession() {
-		return Auth.currentSession();
+	static currentCredentials() {
+		return Auth.currentCredentials();
+	}
+
+	static isExpired() {
+		return this.currentCredentials().then(credentials => credentials.expired);
 	}
 
 	static federatedSignIn(username, password) {
