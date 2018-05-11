@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { PATHNAME } from './PATHNAME'; 
 import { UserController, cognito } from '../../aws';
 const passwordPolicies = cognito.password.policies;
 
@@ -8,6 +9,10 @@ import { FlightCheck, FormInput } from '../presentational';
 
 
 export class SignUpPage extends Component {
+	static pathName() {
+		return PATHNAME.SIGNUP_PAGE;
+	}
+
 	constructor() {
 		super();
 

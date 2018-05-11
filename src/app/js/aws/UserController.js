@@ -4,13 +4,8 @@ import { Auth, API } from 'aws-amplify';
 
 
 export class UserController {
-	static signIn(username, password, errCallback) {
-		return Auth.signIn(username, password).then((awsUser) => {
-			API.get("retrieveUser", "/").then(data => console.log(data));
-		}).catch((err) => {
-			console.log(err);
-			errCallback(err.message);
-		});
+	static signIn(username, password) {
+		return Auth.signIn(username, password);
 	}
 
 	static signUp(email, password, given_name) {
@@ -34,6 +29,10 @@ export class UserController {
 
 	static isExpired() {
 		return this.currentCredentials().then(credentials => credentials.expired);
+	}
+
+	static isAuthenticated() {
+		return this.currentCredentials().then(credentials => credentials.authenticated);
 	}
 
 	static federatedSignIn(username, password) {

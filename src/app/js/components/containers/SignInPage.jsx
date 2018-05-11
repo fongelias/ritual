@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 
 import { UserController } from '../../aws';
+import { PATHNAME } from './PATHNAME'; 
 
 import { FormInput } from '../presentational';
 
 
 
 export class SignInPage extends Component {
+	static pathName() {
+		return PATHNAME.SIGNIN_PAGE;
+	}
+
 	constructor() {
 		super();
 
@@ -23,8 +28,12 @@ export class SignInPage extends Component {
 	}
 
 	signIn() {
-		UserController.signIn(this.state.email.value, this.state.password.value, (msg) => {
-			this.setState({ error: msg });
+		UserController.signIn(this.state.email.value, this.state.password.value).then((awsUser) => {
+			//API.get("retrieveUser", "/").then(data => console.log(data));
+			console.log(this.props.location);
+		}).catch((err) => {
+			console.error(err);
+			this.setState({ error: err.message});
 		});
 	}
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
-//import { url } from '../../../../utils';
+import { PATHNAME } from './PATHNAME'; 
 //svgs
 import RitualMapLogo from '../../../svg/RitualMapLogo.svg';
 import Pen from '../../../svg/pen.svg';
@@ -10,6 +10,10 @@ import Phone from '../../../svg/iPhone5s.svg';
 import Earpods from '../../../svg/earpods.svg';
 
 export class LandingPage extends Component {
+	static pathName() {
+		return PATHNAME.LANDING_PAGE;
+	}
+
 	constructor() {
 		super();
 

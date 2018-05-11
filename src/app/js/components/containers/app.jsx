@@ -9,9 +9,9 @@ import { LandingPage, SignInPage, SignUpPage } from '../containers';
 export const App = () => (
   <Router>
     <Switch>
-	  <Route exact path="/" component={LandingPage}/>
-	  <Route path="/SignUp" component={SignUpPage}/>
-	  <Route path="/SignIn" component={SignInPage}/>
+	  <Route exact path={LandingPage.pathName()} component={LandingPage}/>
+	  <Route path={SignUpPage.pathName()} component={SignUpPage}/>
+	  <Route path={SignInPage.pathName()} component={SignInPage}/>
 	  <Route path="/*" component={LandingPage}/>
     </Switch>
   </Router>
