@@ -5,7 +5,7 @@ import { server } from './server';
 
 describe('Express routes from server level', () => {
 
-	after(() => {
+	afterAll(() => {
 		server.close();
 	})
 
