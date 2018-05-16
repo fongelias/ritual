@@ -1,0 +1,1 @@
+export { updateNameCourier } from './updateNameCourier';
