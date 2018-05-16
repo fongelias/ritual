@@ -1,7 +1,9 @@
 import { ACTION_TYPES } from './actions';
 
 
-const initialState = {};
+const initialState = {
+	isAuthorized: false,
+};
 
 export default function reducer(previousState = initialState, action) {
   switch(action.type) {

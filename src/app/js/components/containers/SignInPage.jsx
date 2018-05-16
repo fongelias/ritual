@@ -4,6 +4,7 @@ import { UserController } from '../../aws';
 import { PATHNAME } from './PATHNAME'; 
 
 import { FormInput } from '../presentational';
+import { DashboardPage } from '../containers';
 
 
 
@@ -30,7 +31,9 @@ export class SignInPage extends Component {
 	signIn() {
 		UserController.signIn(this.state.email.value, this.state.password.value).then((awsUser) => {
 			//API.get("retrieveUser", "/").then(data => console.log(data));
-			console.log(this.props.location);
+			const payload = awsUser.signInUserSession.idToken.payload; //.given_name
+			//console.log(this.props.location);
+			//this.props.location.pathname = 
 		}).catch((err) => {
 			console.error(err);
 			this.setState({ error: err.message});

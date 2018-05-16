@@ -12,29 +12,31 @@ File describing use cases for ritual app
 		- [x] CTA
 		- [x] Title
 		- [x] Value statement
-- [x] User should be able to create a new account
-	- [x] User should be able to create a cognito account
+- [ ] User should be able to create a new account
+	- [ ] User should be able to create a cognito account
+	- [x] Sign Up Page
+- [ ] User should be able to sign in
+	- [x] Sign In Page
+
 
 ## Account holders
 
 ### Public
 - [ ] User should be able to sign in
-	- [ ] User should be able to sign in with cognito credentials
+	- [x] User should be able to sign in with cognito credentials
 	- [ ] User should be sent to their dashboard once signed in
-- [ ] Client should retrieve USER object on sign in
-	- [x] READ
-		- [x] retrieve user from dynamodb in lambda
-		- [ ] update redux state
-- [ ] User should be able to manage RITUALS
-	- [ ] Create
-	- [ ] Read
-	- [ ] Update
-	- [ ] Delete
-- [ ] User should be able to submit COMPLETIONS
-	- [ ] Create
-	- [ ] Read
-	- [ ] Update
-	- [ ] Delete
+- [ ] User should be able to manage Rituals
+	- [ ] See Current Rituals on sign in
+	- [ ] Delete Rituals
+	- [ ] Update rituals
+	- [ ] Create new rituals
+- [ ] User should be able to submit COMPLETIONs
+	- [ ] create completions (for rituals)
+	- [ ] delete completions
+	- [ ] update completions
+	- [ ] see completions by date range
+	- [ ] see streaks of completions
+- [ ] User should be able to access a dashboard page
 
 ### Admin
 
