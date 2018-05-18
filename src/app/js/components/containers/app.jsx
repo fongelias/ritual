@@ -9,9 +9,9 @@ export const App = () => (
   <Router>
     <Switch>
 	  <Route exact path={LandingPage.pathName()} component={LandingPage}/>
-	  <PrivateRoute path={DashboardPage.pathName()} component={DashboardPage}/>
 	  <Route path={SignInPage.pathName()} component={SignInPage}/>
 	  <Route path={SignUpPage.pathName()} component={SignUpPage}/>
+	  <PrivateRoute path={DashboardPage.pathName()} component={DashboardPage}/>
 	  <Route path="/*" component={LandingPage}/>
     </Switch>
   </Router>
