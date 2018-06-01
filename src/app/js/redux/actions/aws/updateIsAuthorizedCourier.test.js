@@ -21,10 +21,6 @@ import { updateIsAuthorizedCourier } from './updateIsAuthorizedCourier';
 
 
 describe('updateIsAuthorizedCourier()', () => {
-	
-	it('should call UserController.isAuthenticated() for state value', () => {
-
-	})
 
 	it('should call the dispatcher with the expected action', () => {
 		const expectedAction = {
@@ -33,8 +29,11 @@ describe('updateIsAuthorizedCourier()', () => {
 		}
 		function dispatcher(action) { return action; };
 
-		updateIsAuthorizedCourier(true, dispatcher).then((action) => {
-			assert.deepEquals(expectedAction, action);
+		updateIsAuthorizedCourier(dispatcher).then((action) => {
+			assert.deepEqual(expectedAction, action);
 		});	
-	})
-})
+	});
+	
+});
+
+
